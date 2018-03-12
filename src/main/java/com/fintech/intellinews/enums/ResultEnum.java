@@ -39,6 +39,9 @@ public enum ResultEnum {
     INSERT_USER_SECTION_FAILED_ERROR(10012, "用户收藏条目失败"),
     INSERT_USER_FOOTMARK_FAILED_ERROR(10013, "添加用户足迹失败"),
 
+    INSERT_FEEDBACK_FAILED_ERROR(10015,"添加用户反馈信息失败"),
+    NO_LIST_NOT_READ_FEEDBACK(10015,"没有未读取用户反馈信息"),
+
     CREATE_MENU_ERROR(40000, "自定义菜单失败"),
     DELETE_MENU_ERROR(40001, "删除自定义菜单失败"),
     ILLEGAL_MENU_TYPES_ERROR(40015, "不合法的菜单类型"),

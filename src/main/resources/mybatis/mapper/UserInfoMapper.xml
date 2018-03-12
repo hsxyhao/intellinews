@@ -44,8 +44,21 @@
         </where>
     </select>
 
+    <select id="getUserInfoById" parameterType="long" resultType="UserInfoEntity">
+        <include refid="Base_Column_Select"/>
+        WHERE user_id = #{userId}
+    </select>
+
     <insert id="insertUserInfo" parameterType="UserInfoEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO oi_user_info (user_id, username, weixin_id, email, phone)
         VALUES (#{userId}, #{username}, #{weixinId}, #{email}, #{phone})
     </insert>
+
+    <select id="mapUserByIds" parameterType="list" resultType="UserInfoEntity">
+        <include refid="Base_Column_Select"/>
+        WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>
