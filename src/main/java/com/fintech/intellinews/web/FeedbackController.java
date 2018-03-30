@@ -33,7 +33,7 @@ public class FeedbackController {
         return ResultUtil.success(feedbackService.listNotReadFeedback());
     }
 
-    @GetMapping
+    @PostMapping
     @ResponseBody
     @ApiOperation(value = "添加用户反馈信息接口", produces = "application/json")
     public Result addFeedBack(
@@ -43,17 +43,17 @@ public class FeedbackController {
         return ResultUtil.success(feedbackService.addFeedback(currentUserId,msg));
     }
 
-    @GetMapping
+    @GetMapping("/count/{userId}")
     @ResponseBody
     @ApiOperation(value = "统计当前用户未读取反馈信息数量", produces = "application/json")
     public Result countFeedbackById(
             @ApiParam(name = "userId", value = "用户id", required = true)
-            @RequestParam(name = "userId") Long userId) {
+            @PathVariable(name = "userId") Long userId) {
         //TODO 权限验证
         return ResultUtil.success(feedbackService.countNotFeedbackById(userId));
     }
 
-    @GetMapping
+    @GetMapping("/count")
     @ResponseBody
     @ApiOperation(value = "统计所有未读取反馈信息数量", produces = "application/json")
     public Result countFeedback() {

@@ -4,13 +4,12 @@
     <sql id="Base_Column_Select">
         SELECT
             id,
-            title,
-            url,
-            thumbnail,
-            is_active,
+            user_id,
+            is_read,
+            msg,
             gmt_create,
             gmt_modified
-        FROM oi_msg
+        FROM oi_feedback
     </sql>
 
     <select id="listNotReadFeedback" resultType="FeedbackEntity" parameterType="FeedbackEntity">
@@ -35,7 +34,7 @@
         WHERE is_read = 0 AND user_id = #{userId}
     </select>
 
-    <insert id="addFeedback" parameterType="FeedbackEntity">
+    <insert id="addFeedback" parameterType="FeedbackEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO oi_feedback(user_id,is_read,msg,gmt_create,gmt_modified)
         VALUES (#{userId},#{isRead},#{msg},#{gmtCreate},#{gmtModified})
     </insert>

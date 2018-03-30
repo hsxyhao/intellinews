@@ -48,7 +48,7 @@ public class FeedbackServiceImpl implements FeedbackService {
             feedbackVO.setUserId(feedbackEntity.getUserId());
             feedbackVO.setMsg(feedbackEntity.getMsg());
             feedbackVO.setCreateTime(feedbackEntity.getGmtCreate());
-            feedbackVO.setUserName(userInfoMap.get(feedbackEntity.getId()).getUsername());
+            feedbackVO.setUserName(userInfoMap.get(feedbackEntity.getUserId()).getUsername());
             feedbackVOS.add(feedbackVO);
         }
         return feedbackVOS;
@@ -87,7 +87,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public Integer addFeedback(Long userId, String msg) {
         FeedbackEntity feedback = new FeedbackEntity();
-        feedback.setId(userId);
+        feedback.setUserId(userId);
         feedback.setMsg(msg);
         feedback.setRead(false);
         feedback.setGmtCreate(Calendar.getInstance().getTime());
