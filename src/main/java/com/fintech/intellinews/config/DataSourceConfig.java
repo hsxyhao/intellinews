@@ -28,8 +28,8 @@ public class DataSourceConfig {
     public DruidDataSource master() {
         return new DruidDataSourceFactory.DruidDataSourceBuilder()
                 .setUsername("root")
-                .setPassword("AE6eiO3r.E1")
-                .setUrl("jdbc:mysql://119.31.210.76:3316/intellinews?characterEncoding=utf8&useSSL=false")
+                .setPassword("WRy93Ee4sGI")
+                .setUrl("jdbc:mysql://39.108.173.101:3316/intellinews?characterEncoding=utf8&useSSL=false")
                 .setFilters("mergeStat")
                 .build();
     }
@@ -38,18 +38,8 @@ public class DataSourceConfig {
     public DruidDataSource slave1() {
         return new DruidDataSourceFactory.DruidDataSourceBuilder()
                 .setUsername("root")
-                .setPassword("AE6eiO3r.E1")
-                .setUrl("jdbc:mysql://119.31.210.76:3317/intellinews?characterEncoding=utf8&useSSL=false")
-                .setFilters("mergeStat")
-                .build();
-    }
-
-    @Bean("slave2")
-    public DruidDataSource slave2() {
-        return new DruidDataSourceFactory.DruidDataSourceBuilder()
-                .setUsername("root")
-                .setPassword("AE6eiO3r.E1")
-                .setUrl("jdbc:mysql://119.31.210.76:3318/intellinews?characterEncoding=utf8&useSSL=false")
+                .setPassword("WRy93Ee4sGI")
+                .setUrl("jdbc:mysql://39.108.173.101:3317/intellinews?characterEncoding=utf8&useSSL=false")
                 .setFilters("mergeStat")
                 .build();
     }
@@ -57,12 +47,11 @@ public class DataSourceConfig {
     @Bean("dynamicDataSource")
     public DynamicDataSource dynamicDataSource(
             @Qualifier("master") DruidDataSource master,
-            @Qualifier("slave1") DataSource slave1,
-            @Qualifier("slave2") DataSource slave2) {
+            @Qualifier("slave1") DataSource slave1) {
         DynamicDataSource dynamic = new DynamicDataSource();
         dynamic.setReadDataSourcePollPattern(1);
         dynamic.setMaster(master);
-        dynamic.setSlaves(Arrays.asList(slave1, slave2));
+        dynamic.setSlaves(Arrays.asList(slave1));
         return dynamic;
     }
 
